@@ -4,7 +4,7 @@ from datetime import datetime
 
 from sqlalchemy import Boolean, DateTime, Enum, String, func
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
 
@@ -77,6 +77,14 @@ class User(Base):
         server_default=func.now(),
         onupdate=func.now(),
         nullable=False,
+    )
+
+    # ── Relationships ─────────────────────────────────────────────────────────
+    profile: Mapped["Profile"] = relationship(  # type: ignore[name-defined]  # noqa: F821
+        "Profile",
+        back_populates="user",
+        uselist=False,
+        lazy="raise",
     )
 
     def __repr__(self) -> str:
