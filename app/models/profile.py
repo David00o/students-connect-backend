@@ -126,6 +126,12 @@ class Profile(Base):
         back_populates="profile",
         lazy="raise",
     )
+    educations: Mapped[list["Education"]] = relationship(  # type: ignore[name-defined]  # noqa: F821
+        "Education",
+        back_populates="profile",
+        lazy="raise",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self) -> str:
         return f"<Profile id={self.id} username={self.username}>"

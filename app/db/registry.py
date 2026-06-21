@@ -12,6 +12,7 @@ No model module should ever import from this file.
 from app.models.user import User  # noqa: F401
 from app.models.otp import OTP    # noqa: F401
 from app.models.profile import Profile  # noqa: F401
+from app.models.education import Education  # noqa: F401
 
 # Add future models here, e.g.:
-# from app.models.profile import Profile  # noqa: F401
+# from app.models.certificate import Certificate  # noqa: F401
